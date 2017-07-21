@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="servlets.User"%>
     <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
@@ -11,9 +11,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<!--  dont forget to import user
+% 
+User user = (User) session.getAttribute("user"); 
+
+%> Hello %= user.getUsername()  %>, your email is %= user.getEmail() %>
+-->
+
+
 hello <%= session.getAttribute("user")   %> !
 
-
+<!--  IF U USE DISPATCHER hello %= request.getAttribute("user")   %> ! -->
 
 
 
