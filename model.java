@@ -53,7 +53,18 @@ public class Model {
 	}
 	
 	
-	
+	//	public User getUserObject (String s) {
+//		
+//		User user = new User ();
+//		
+//		user.setUsername(s);
+//		user.setID(iD);
+//		user.setEmail(email);
+//		
+//		return user;
+//		
+//		
+//	}
 	
 	
 	
