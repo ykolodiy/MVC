@@ -1,0 +1,65 @@
+package servlets;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/login")
+public class ControllerRequestDispatch extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+  
+    public ControllerRequestDispatch() {
+        super();
+       
+    }
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	String login1, password1;
+		
+		login1 = request.getParameter("username1");
+		password1 = request.getParameter("password1");
+		
+		Model m = new Model ();
+		
+		if (m.uu(login1, password1)) {
+			
+			/* IF U HAVE OBJECT AND WE REMOVED SESSION BECAUSE IT GO THRU REQUEST
+			 * 
+			User user = m.getUserObject(login1);
+			//save user object in this session to use it everywhere where user login
+			request.setAttribute("user", user);
+			
+			*/
+			
+			
+			//or just no object. AND WE REMOVED SESSION BECAUSE IT GO THRU REQUEST
+			request.setAttribute("user", login1);
+			
+			
+			
+			
+			//instead of send redirect we r using dispatch
+			RequestDispatcher dispatch= request.getRequestDispatcher("success.jsp");
+			//now we need to pass req and res objects
+			dispatch.forward(request, response);
+			
+			
+			
+		} else {response.sendRedirect("formRegister.jsp");}
+		
+		
+		
+		
+		
+	}
+
+}
