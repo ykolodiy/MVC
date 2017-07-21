@@ -34,9 +34,14 @@ public class Controller extends HttpServlet {
 		
 		if (m.uu(login1, password1)) {
 			
+			//			User user = m.getUserObject(login1);
+//			//save user object in this session to use it everywhere where user login
+//			request.getSession().setAttribute("user", user);
+			
+			
+			
 			request.getSession().setAttribute("user", login1);
 	
-			
 			response.sendRedirect("success.jsp");
 			
 			
