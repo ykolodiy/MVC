@@ -52,19 +52,51 @@ public class Model {
 		return false;
 	}
 	
-	
-	//	public User getUserObject (String s) {
-//		
-//		User user = new User ();
-//		
-//		user.setUsername(s);
-//		user.setID(iD);
-//		user.setEmail(email);
-//		
-//		return user;
-//		
-//		
-//	}
+	//we gonna select uname from mysql and push it to user object and use it later
+public User getUserObject (String s) {
+		String uname = s;
+		User user = new User ();
+		
+	try{  
+			
+		
+			
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://ec2-54-202-52-81.us-west-2.compute.amazonaws.c");  
+		
+			Statement stmt=con.createStatement();  
+			ResultSet rs=stmt.executeQuery("select * from RegisteredUsers where Username="+"\'"+uname+"\'");  
+			
+		
+			while(rs.next())  
+			{
+			
+			user.setUsername(rs.getString(2));
+			user.setID(rs.getString(1));
+			user.setEmail(rs.getString(4));
+			user.setPassword(rs.getString(3));
+			
+			System.out.println(user.getEmail()+" "+user.getID()+" "+user.getUsername());
+		
+			}
+			con.close();  
+			
+		
+			}catch(Exception e){ System.out.println(e);} 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return user;
+		
+		
+	}
 	
 	
 	
